@@ -1,5 +1,10 @@
 module Enumerable
   # Your code goes here
+  def my_each_with_index
+    return to_enum(:my_each_with_index) unless block_given?
+    self.size.times { |index| yield self[index], index }
+    self
+  end
 end
 
 # You will first have to define my_each
@@ -8,4 +13,11 @@ end
 # to this method
 class Array
   # Define my_each here
+  def my_each
+    return to_enum(:my_each) unless block_given?
+    for element in self do
+      yield element
+    end
+    self
+  end
 end
