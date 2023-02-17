@@ -5,6 +5,13 @@ module Enumerable
     self.size.times { |index| yield self[index], index }
     self
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+    selected = []
+    my_each { |element| selected.push(element) if yield element }
+    selected
+  end
 end
 
 # You will first have to define my_each
