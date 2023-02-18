@@ -50,6 +50,21 @@ module Enumerable
     end
     true  
   end
+
+  def my_inject(accumulator = nil)
+    my_each do |element|
+      if accumulator.nil?
+        accumulator = element
+        next
+      end
+      accumulator = yield accumulator, element   
+    end
+    accumulator
+  end
+
+  def my_map
+    
+  end
 end
 
 # You will first have to define my_each
