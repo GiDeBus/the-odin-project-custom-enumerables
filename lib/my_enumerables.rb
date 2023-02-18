@@ -63,7 +63,12 @@ module Enumerable
   end
 
   def my_map
-    
+    return to_enum(:my_map) if !block_given? && block.nil?
+    result = []
+    if block_given?
+      my_each { |element| result.push(yield element) }
+    end
+    result
   end
 end
 
