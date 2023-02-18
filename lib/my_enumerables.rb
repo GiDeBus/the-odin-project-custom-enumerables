@@ -43,12 +43,12 @@ module Enumerable
   end
 
   def my_none?(condition = nil)
-
     if block_given?
-      my_each { |element| return true unless yield element }
+      my_each { |element| return false if yield element }
     elsif !condition.nil?
-      my_each { |element| return true unless element === condition }
-    end  
+      my_each { |element| return false if element === condition }
+    end
+    true  
   end
 end
 
